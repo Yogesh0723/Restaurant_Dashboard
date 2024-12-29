@@ -20,7 +20,7 @@ export function RevenueCards({ todaySales, monthlyRevenue, totalOrders, averageO
         transition={{ delay: 0.1 }}
       >
         <Card className="p-6">
-          <h3 className="font-semibold mb-2">Today's Sales</h3>
+          <h3 className="font-semibold mb-2">Today Sales</h3>
           <p className="text-3xl font-bold">₹{todaySales.toLocaleString()}</p>
           <div className="flex items-center text-sm mt-2">
             <ArrowUpIcon className="w-4 h-4 text-green-500 mr-1" />
