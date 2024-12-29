@@ -12,7 +12,7 @@ interface MenuItem {
   name: string;
   description: string;
   price: number;
-  category: string;
+  category: "main" | "starters" | "desserts" | "beverages";
   imageUrl: string;
   isAvailable: boolean;
 }
