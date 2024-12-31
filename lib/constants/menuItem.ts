@@ -12,7 +12,7 @@ export const FALLBACK_MENU_IMAGES = {
       'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&q=80'  // Paneer
     ],
     desserts: [
-      'https://images.unsplash.com/photo-1605197584547-b93086aef8bb?w=800&q=80', // Gulab Jamun
+      'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=800&q=80', // Gulab Jamun
       'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&q=80', // Kheer
       'https://images.unsplash.com/photo-1605197788044-5e26a09a5fbd?w=800&q=80', // Jalebi
       'https://images.unsplash.com/photo-1605197869547-1347c7d62c8c?w=800&q=80'  // Rasmalai

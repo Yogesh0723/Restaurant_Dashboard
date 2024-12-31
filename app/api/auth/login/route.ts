@@ -1,7 +1,7 @@
+// app/api/auth/login/route.ts
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import User from '@/models/User';
-import bcrypt from 'bcryptjs';
 
 export async function POST(req: Request) {
   try {
@@ -21,7 +21,8 @@ export async function POST(req: Request) {
       );
     }
 
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    // Use the comparePassword method we added to the schema
+    const isValidPassword = await user.comparePassword(password);
     if (!isValidPassword) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
@@ -29,14 +30,15 @@ export async function POST(req: Request) {
       );
     }
 
+    // Remove password from response
+    const { password: _, ...userWithoutPassword } = user.toObject();
+
     return NextResponse.json({
-      user: {
-        id: user._id,
-        username: user.username,
-        email: user.email
-      }
+      message: 'Login successful',
+      user: userWithoutPassword
     });
   } catch (error) {
+    console.error('Login error:', error);
     return NextResponse.json(
       { error: 'Login failed' },
       { status: 500 }

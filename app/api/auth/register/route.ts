@@ -3,9 +3,6 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import User from '@/models/User';
 
-export const dynamic = 'force-dynamic';
-export const runtime = 'nodejs';
-
 export async function POST(req: Request) {
   try {
     const { username, email, password } = await req.json();
@@ -30,12 +27,14 @@ export async function POST(req: Request) {
       );
     }
 
+    // Create user - password will be automatically hashed by the pre-save hook
     const user = await User.create({
       username,
       email,
       password
     });
 
+    // Remove password from response
     const { password: _, ...userWithoutPassword } = user.toObject();
 
     return NextResponse.json(

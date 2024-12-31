@@ -1,15 +1,31 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { MapPin, ChevronDown } from 'lucide-react';
 import { AuthDialog } from '@/components/auth/auth-dialog';
 import Link from 'next/link';
 
+const backgroundImages = [
+  "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=1200&q=80",
+  "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=1200&q=80",
+  "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1200&q=80",
+  "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=1200&q=80",
+  "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=1200&q=80"
+];
+
 export function Hero() {
   const [showAuthDialog, setShowAuthDialog] = useState(false);
   const [authType, setAuthType] = useState<'login' | 'register'>('login');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleAuthClick = (type: 'login' | 'register') => {
     setAuthType(type);
@@ -25,29 +41,31 @@ export function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <motion.div 
+      {backgroundImages.map((image, index) => (
+        <motion.div
+        key={image}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: currentImageIndex === index ? 1 : 0 }}
         transition={{ duration: 1.5 }}
         className="absolute inset-0"
-      >
-        <div 
-          className="absolute inset-0 bg-black/60"
-          style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80)",
-            backgroundSize: 'cover',
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed"
-          }}
-        />
+        style={{
+          zIndex: currentImageIndex === index ? 1 : 0,
+          backgroundImage: `url(${image})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+        >
+        <div className="absolute inset-0 bg-black/60" />
       </motion.div>
+      ))}
       
-      <div className="text-center space-y-8 p-8 max-w-4xl z-10"> {/* Added z-10 to ensure content is above background */}
+      <div className="text-center space-y-8 p-8 max-w-4xl z-10">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="text-6xl font-bold text-white"
+          className="text-6xl font-bold text-white hover:text-primary transition-colors duration-300"
         >
           Welcome to Patil Dhaba
         </motion.h1>
@@ -55,7 +73,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="text-2xl text-white/90"
+          className="text-2xl text-white/90 hover:text-white transition-opacity duration-300"
         >
           Experience the finest authentic Maharashtrian cuisine
         </motion.p>
@@ -75,7 +93,7 @@ export function Hero() {
           <Button 
             size="lg" 
             variant="secondary" 
-            className="bg-white/90 hover:bg-grey text-black"
+            className="bg-white/90 hover:bg-white text-black"
             onClick={() => handleAuthClick('register')}
           >
             Register

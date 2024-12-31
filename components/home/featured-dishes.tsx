@@ -52,7 +52,7 @@ const featuredDishes = [
   {
     name: "Modak",
     description: "Sweet coconut dumplings",
-    image: "https://images.unsplash.com/photo-1605197584547-b93086aef8bb?w=500&q=80",
+    image: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=800&q=80",
     price: "₹40"
   }
 ];
@@ -72,7 +72,7 @@ export function FeaturedDishes() {
   useEffect(() => {
     const interval = setInterval(() => {
       scrollContainer('right');
-    }, 1000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
