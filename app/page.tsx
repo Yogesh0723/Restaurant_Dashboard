@@ -5,7 +5,6 @@ import { Stats } from "@/components/home/stats";
 import { About } from "@/components/home/about";
 import { Footer } from "@/components/footer";
 import { Reviews } from "@/components/home/reviews";
-import { Specialties } from "@/components/home/specilaties";
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       <FeaturedDishes />
       <Stats />
       <Reviews />
-      <Specialties />
       <About />
       <Footer />
     </div>
