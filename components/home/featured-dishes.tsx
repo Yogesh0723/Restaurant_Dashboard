@@ -8,28 +8,88 @@ import { Button } from '@/components/ui/button';
 
 const featuredDishes = [
   {
+    name: "Batata Poha",
+    description: "flavourful Indian breakfast recipe.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2022/12/blog1.jpg?w=500&q=80",
+    price: "₹120"
+  },
+  {
     name: "Misal Pav",
-    description: "Spicy curry with crunchy farsan and pav",
-    image: "https://images.unsplash.com/photo-1567337710282-00832b415979?w=500&q=80",
+    description: "Curry with crunchy farsan and pav.",
+    image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=500&q=80",
     price: "₹120"
   },
   {
     name: "Vada Pav",
-    description: "Mumbai's favorite street food",
-    image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=500&q=80",
+    description: "Mumbai's favorite street food.",
+    image: "https://www.cookwithmanali.com/wp-content/uploads/2018/04/Vada-Pav.jpg?w=500&q=80",
     price: "₹30"
   },
   {
-    name: "Puran Poli",
-    description: "Sweet flatbread with lentil stuffing",
-    image: "https://images.unsplash.com/photo-1590577976322-3d2d6e2130d5?w=500&q=80",
-    price: "₹60"
+    name: "Rawa Idli",
+    description: "Multi-grain savory pancake.",
+    image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500&q=80",
+    price: "₹80"
   },
   {
     name: "Bharli Vangi",
-    description: "Stuffed eggplant curry",
-    image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500&q=80",
-    price: "₹180"
+    description: "Indian smoked aubergine.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2023/06/Blog_1-2.jpg?w=500&q=80",
+    price: "₹120"
+  },
+  {
+    name: "Aloo-Gobi",
+    description: "Indian side dish with aloo and gobi.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2022/02/final_logo-2.jpg?w=500&q=80",
+    price: "₹120"
+  },
+  {
+    name: "Nachanichi Bhakri",
+    description: "Indian flatbread prepared with ragi.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2023/02/Blog_1-5.jpg?w=500&q=80&ssl=1",
+    price: "₹7"
+  },
+  {
+    name: "Puran Poli",
+    description: "Sweet flatbread with lentil stuffing.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2023/03/Blog.jpg?w=500&q=80&ssl=1",
+    price: "₹60"
+  },
+  {
+    name: "Ukdiche Modak",
+    description: "Sweet coconut dumplings.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2021/10/ukadiche-modak.jpg?w=800&q=80",
+    price: "₹10"
+  },
+  {
+    name: "Gajar Halwa",
+    description: "Super delicious carrot dessert.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2021/12/final.jpg?w=800&q=80",
+    price: "₹70"
+  },
+  {
+    name: "Shrikhand ",
+    description: "Super delicious yoghurt dessert.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2021/09/shrikhand.jpg?w=800&q=80",
+    price: "₹70"
+  },
+  {
+    name: "Prawns Masala",
+    description: "Super tempting prawns tangy masala.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2021/03/final-5.jpg?w=500&q=80&ssl=1",
+    price: "₹360"
+  },
+  {
+    name: "Mushroom",
+    description: "Gravy prepared with mushrooms.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2021/07/final-6.jpg?w=500&q=80&ssl=1",
+    price: "₹260"
+  },
+  {
+    name: "Chicken Cafreal",
+    description: "Goan gravy with chicken.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2023/01/blog_1-3.jpg?w=500&q=80&ssl=1",
+    price: "₹300"
   },
   {
     name: "Tambda Rassa",
@@ -38,22 +98,10 @@ const featuredDishes = [
     price: "₹250"
   },
   {
-    name: "Kothimbir Vadi",
-    description: "Crispy coriander fritters",
-    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80",
-    price: "₹100"
-  },
-  {
-    name: "Thalipeeth",
-    description: "Multi-grain savory pancake",
-    image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500&q=80",
-    price: "₹80"
-  },
-  {
-    name: "Modak",
-    description: "Sweet coconut dumplings",
-    image: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=800&q=80",
-    price: "₹40"
+    name: "Rawa fry",
+    description: "Goan style Rawa fried fish.",
+    image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2022/09/seabass.jpg?w=500&q=80",
+    price: "₹350"
   }
 ];
 

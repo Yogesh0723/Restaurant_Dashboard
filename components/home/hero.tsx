@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { MapPin, ChevronDown } from 'lucide-react';
 import { AuthDialog } from '@/components/auth/auth-dialog';
 import Link from 'next/link';
+import { GlowingText } from '@/components/ui/glowing-text';
 
 const backgroundImages = [
   "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=1200&q=80",
@@ -67,15 +68,24 @@ export function Hero() {
           transition={{ delay: 0.3 }}
           className="text-6xl font-bold text-white hover:text-primary transition-colors duration-300"
         >
+          <GlowingText 
+          delay={0.3}
+          className="text-6xl font-bold text-white"
+        >
           Welcome to Patil Dhaba
+        </GlowingText>
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="text-2xl text-white/90 hover:text-white transition-opacity duration-300"
-        >
-          Experience the finest authentic Maharashtrian cuisine
+          className="text-2xl text-white/90 hover:text-black transition-opacity duration-300"
+        > <GlowingText 
+          delay={0.5}
+          className="text-2xl text-white/90 block"
+          >
+            Experience the finest authentic Maharashtrian cuisine
+          </GlowingText>
         </motion.p>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
