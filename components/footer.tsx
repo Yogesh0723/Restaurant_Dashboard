@@ -16,12 +16,12 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/menu" className="text-muted-foreground hover:text-primary">
+                <Link href="#" className="text-muted-foreground hover:text-primary">
                   Menu
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary">
+                <Link href="#" className="text-muted-foreground hover:text-primary">
                   Contact
                 </Link>
               </li>
@@ -30,10 +30,10 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li>123 Restaurant Street</li>
-              <li>Mumbai, Maharashtra</li>
-              <li>Phone: +91 1234567890</li>
-              <li>Email: info@patildhaba.com</li>
+              <li>National Highway - 4</li>
+              <li>Mumbai, Banglore Express Highway</li>
+              <li>Phone: +91 9998880001</li>
+              <li>Email: dhabapatil@gmail.com</li>
             </ul>
           </div>
           <div>
