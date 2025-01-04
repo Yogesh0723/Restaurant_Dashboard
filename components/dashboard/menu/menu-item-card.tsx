@@ -1,21 +1,12 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Pencil, Trash2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { MenuItem } from '@/types/menu';
 import { getFallbackImage } from '@/lib/constants/menuItem';
-
-interface MenuItem {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: 'starters' | 'main' | 'desserts' | 'beverages';
-  imageUrl: string;
-  isAvailable: boolean;
-}
 
 interface MenuItemCardProps {
   item: MenuItem;
@@ -41,6 +32,13 @@ export function MenuItemCard({ item, onEdit, onDelete }: MenuItemCardProps) {
       onHoverEnd={() => setShowActions(false)}
     >
       <Card className="relative overflow-hidden">
+        <div className="absolute top-2 left-2 z-10">
+          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+            item.type === 'veg' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+          }`}>
+            {item.type === 'veg' ? '🟢 Veg' : '🔴 Non-veg'}
+          </span>
+        </div>
         <div className="h-48 overflow-hidden">
           <img
             src={imgSrc}

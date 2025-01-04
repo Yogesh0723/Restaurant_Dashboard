@@ -11,6 +11,8 @@ import { RadarMetrics } from './analytics/radar-chart';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { Skeleton } from '@/components/ui/skeleton';
+import { RecentTransactions } from './analytics/recent-transactions';
+import { SalesCharts } from './analytics/sales-chart/index';
 
 interface AnalyticsData {
   todaySales: number;
@@ -22,6 +24,8 @@ interface AnalyticsData {
   bestSellers: any[];
   hourlySales: any[];
   performanceMetrics: any[];
+  recentTransactions: any[];
+  salesData: any[];
 }
 
 export function Analytics() {
@@ -72,10 +76,13 @@ export function Analytics() {
           data={analyticsData.weeklySales}
           title="Weekly Sales Trend"
         /> */}
-        <SalesChart
+        {/* <SalesChart
           data={analyticsData.weeklySales}
           title="Weekly Sales Analysis"
-        />
+        /> */}
+        <SalesCharts data={analyticsData.salesData} />
+        <RecentTransactions transactions={analyticsData.recentTransactions} />
+        
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

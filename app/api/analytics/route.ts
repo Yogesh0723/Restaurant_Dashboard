@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import { Bill, Table } from '@/models/Table';
-import { startOfDay, endOfDay, startOfMonth, endOfMonth, subDays } from 'date-fns';
+import { startOfDay, endOfDay, startOfMonth, endOfMonth, subDays, format } from 'date-fns';
 
 export async function GET() {
   try {
@@ -61,12 +61,21 @@ export async function GET() {
       { $match: { status: 'paid' } },
       { $unwind: '$order.items' },
       {
-        $group: {
-          _id: '$order.items.menuItemCategory', // Group by menuItemCategory
-          value: { $sum: { $multiply: ['$order.items.price', '$order.items.quantity'] } } // Sum total price
+          $group: {
+            _id: '$order.items.menuItemCategory', // Group by menuItemCategory
+            value: { $sum: { $multiply: ['$order.items.price', '$order.items.quantity'] } } // Sum total price
+          }
         }
-      }
-    ]);
+      ]);
+
+      // Transform the categoryData to the expected format
+      const transformedCategoryData = categoryData.map(item => ({
+        name: item._id || 'Unknown', // Use 'Unknown' for null or undefined categories
+        value: item.value
+      }));
+
+      console.log("Transformed Category Data:", transformedCategoryData);
+
 
     // Best sellers
     const bestSellers = await Bill.aggregate([
@@ -104,6 +113,40 @@ export async function GET() {
         }
       }
     ]);
+    // Get recent transactions
+    const recentTransactions = await Bill.find({ status: { $in: ['paid', 'pending', 'cancelled'] } })
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .select('kotNumber order.total paymentMethod status createdAt')
+      .lean();
+
+    const formattedTransactions = recentTransactions.map(transaction => ({
+      kotNumber: transaction.kotNumber,
+      amount: transaction.order.total,
+      paymentMethod: transaction.paymentMethod,
+      status: transaction.status,
+      date: format(transaction.createdAt, 'dd-MM-yyyy')
+    }));
+    // Function to get sales data for the chart
+      const salesData = await Bill.aggregate([
+        { $match: { status: 'paid' } },
+        {
+          $group: {
+            _id: {
+              $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } // Group by date
+            },
+            totalSales: { $sum: { $multiply: ['$order.total', 1] } } // Sum total sales
+          }
+        },
+        { $sort: { _id: 1 } } // Sort by date
+      ]);
+
+      // Transform the sales data to the expected format
+      const transformedSalesData = salesData.map(item => ({
+        name: item._id, // Date as name
+        value: item.totalSales // Total sales as value
+      }));
+    
 
     return NextResponse.json({
       todaySales,
@@ -111,7 +154,7 @@ export async function GET() {
       totalOrders,
       averageOrderValue,
       weeklySales: weeklySales.reverse(),
-      categoryData,
+      categoryData: transformedCategoryData,
       bestSellers: bestSellers.map(item => ({
         name: item._id,
         sales: item.sales
@@ -123,7 +166,9 @@ export async function GET() {
       performanceMetrics: paymentMetrics.map(item => ({
         subject: item._id,
         value: item.value
-      }))
+      })),
+      recentTransactions: formattedTransactions,
+      salesData: transformedSalesData
     });
   } catch (error) {
     console.error('Analytics error:', error);

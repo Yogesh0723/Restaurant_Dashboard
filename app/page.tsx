@@ -4,7 +4,7 @@ import { FeaturedDishes } from "@/components/home/featured-dishes";
 import { Stats } from "@/components/home/stats";
 import { About } from "@/components/home/about";
 import { Footer } from "@/components/footer";
-import { Reviews } from "@/components/home/reviews";
+import Reviews from "@/components/home/reviews";
 
 export default function Home() {
   return (

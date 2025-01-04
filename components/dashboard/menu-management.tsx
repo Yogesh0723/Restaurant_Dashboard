@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -6,22 +6,13 @@ import { useToast } from '@/hooks/use-toast';
 import { MenuForm } from './menu/menu-form';
 import { MenuGrid } from './menu/menu-grid';
 import { Plus } from 'lucide-react';
-
-interface MenuItem {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: "main" | "starters" | "desserts" | "beverages";
-  imageUrl: string;
-  isAvailable: boolean;
-}
+import { MenuItem } from '@/types/menu';
 
 export function MenuManagement() {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [editItem, setEditItem] = useState<MenuItem | null>(null);
+  const [editItem, setEditItem] = useState<MenuItem | undefined>(undefined); 
   const { toast } = useToast();
 
   useEffect(() => {
@@ -58,14 +49,17 @@ export function MenuManagement() {
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error('Operation failed');
+      if (!res.ok) {
+        const errorMessage = await res.text();
+        throw new Error(`Operation failed: ${errorMessage}`);
+      }
 
       toast({
         title: "Success",
         description: `Menu item ${editItem ? 'updated' : 'added'} successfully`,
       });
       setShowForm(false);
-      setEditItem(null);
+      setEditItem(undefined);
       fetchMenuItems();
     } catch (error) {
       toast({
@@ -77,6 +71,8 @@ export function MenuManagement() {
   };
 
   const handleDelete = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this item?')) return;
+
     try {
       const res = await fetch(`/api/menu/${id}`, {
         method: 'DELETE',
@@ -106,7 +102,7 @@ export function MenuManagement() {
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Menu Management</h2>
-        <Button onClick={() => setShowForm(true)}>
+        <Button onClick={() => setShowForm(true)} className="bg-orange-600 hover:bg-orange-700">
           <Plus className="w-4 h-4 mr-2" />
           Add Item
         </Button>
@@ -118,7 +114,7 @@ export function MenuManagement() {
           initialData={editItem}
           onCancel={() => {
             setShowForm(false);
-            setEditItem(null);
+            setEditItem(undefined);
           }}
         />
       ) : (

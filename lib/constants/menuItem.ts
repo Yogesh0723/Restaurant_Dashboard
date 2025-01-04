@@ -22,6 +22,12 @@ export const FALLBACK_MENU_IMAGES = {
       'https://images.unsplash.com/photo-1578020190125-f4f7c18bc9cb?w=800&q=80', // Lassi
       'https://images.unsplash.com/photo-1544252890-c3e95e867d2a?w=800&q=80', // Coffee
       'https://images.unsplash.com/photo-1565200003367-2a63094b37a5?w=800&q=80'  // Nimbu Pani
+    ],
+    breakfast: [
+      'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&q=80', // Masala Chai
+      'https://images.unsplash.com/photo-1578020190125-f4f7c18bc9cb?w=800&q=80', // Lassi
+      'https://images.unsplash.com/photo-1544252890-c3e95e867d2a?w=800&q=80', // Coffee
+      'https://images.unsplash.com/photo-1565200003367-2a63094b37a5?w=800&q=80'  // Nimbu Pani
     ]
   };
   

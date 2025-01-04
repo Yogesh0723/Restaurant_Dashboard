@@ -9,9 +9,9 @@ import { Button } from '@/components/ui/button';
 const featuredDishes = [
   {
     name: "Batata Poha",
-    description: "flavourful Indian breakfast recipe.",
+    description: "Flavourful Indian breakfast recipe.",
     image: "https://i0.wp.com/delishbite.in/wp-content/uploads/2022/12/blog1.jpg?w=500&q=80",
-    price: "₹120"
+    price: "₹30"
   },
   {
     name: "Misal Pav",

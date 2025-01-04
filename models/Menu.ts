@@ -16,7 +16,12 @@ const MenuSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['starters', 'main', 'desserts', 'beverages'],
+    enum: ['starters', 'main', 'desserts', 'beverages', 'breakfast'],
+  },
+  type: {
+    type: String,
+    required: true,
+    enum: ['veg', 'non-veg'],
   },
   imageUrl: {
     type: String,

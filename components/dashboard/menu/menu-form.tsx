@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { useToast } from '@/hooks/use-toast';
+import { MenuItem } from '@/types/menu';
 
 interface MenuFormProps {
-  onSubmit: (data: any) => void;
-  initialData?: any;
+  onSubmit: (data: Partial<MenuItem>) => void;
+  initialData?: MenuItem;
   onCancel: () => void;
 }
 
@@ -16,15 +16,23 @@ export function MenuForm({ onSubmit, initialData, onCancel }: MenuFormProps) {
   const [formData, setFormData] = useState({
     name: initialData?.name || '',
     description: initialData?.description || '',
-    price: initialData?.price || '',
+    price: initialData?.price?.toString() || '',
     category: initialData?.category || 'main',
+    type: initialData?.type || 'veg',
     imageUrl: initialData?.imageUrl || '',
     isAvailable: initialData?.isAvailable ?? true,
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    
+    // Convert form data to match MenuItem type
+    const submissionData: Partial<MenuItem> = {
+      ...formData,
+      price: parseFloat(formData.price), // Convert string to number
+    };
+
+    onSubmit(submissionData);
   };
 
   return (
@@ -52,12 +60,21 @@ export function MenuForm({ onSubmit, initialData, onCancel }: MenuFormProps) {
         <select
           className="w-full p-2 border rounded"
           value={formData.category}
-          onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, category: e.target.value as MenuItem['category'] })}
         >
           <option value="starters">Starters</option>
           <option value="main">Main Course</option>
           <option value="desserts">Desserts</option>
           <option value="beverages">Beverages</option>
+          <option value="breakfast">Breakfast</option>
+        </select>
+        <select
+          className="w-full p-2 border rounded"
+          value={formData.type}
+          onChange={(e) => setFormData({ ...formData, type: e.target.value as 'veg' | 'non-veg' })}
+        >
+          <option value="veg">Vegetarian</option>
+          <option value="non-veg">Non-Vegetarian</option>
         </select>
         <Input
           placeholder="Image URL (optional)"

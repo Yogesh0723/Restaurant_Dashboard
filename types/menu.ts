@@ -3,7 +3,13 @@ export interface MenuItem {
   name: string;
   description: string;
   price: number;
-  category: 'starter' | 'main' | 'dessert' | 'beverage';
+  category: 'starters' | 'main' | 'desserts' | 'beverages' | 'breakfast';
+  type: 'veg' | 'non-veg';
   imageUrl?: string;
   isAvailable: boolean;
 }
+
+export type MenuFilter = {
+  category?: string;
+  type?: 'veg' | 'non-veg';
+};

@@ -14,7 +14,7 @@ const orderItemSchema = new mongoose.Schema({
   menuItemCategory: {
     type: String,
     required: true,
-    enum: ['starters', 'main', 'desserts', 'beverages'], // Match the categories in Menu
+    enum: ['starters', 'main', 'desserts', 'beverages', 'breakfast'], // Match the categories in Menu
   },
   quantity: {
     type: Number,
