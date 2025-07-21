@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/DB';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://yogupatil135:bSgSb5Zfq6nHQOTt@cluster0.ncluv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) {
